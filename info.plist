@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>kdl-ding</string>
+	<key>connections</key>
+	<dict>
+		<key>9D672782-154E-4DF1-A3B0-C066D478B22B</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>C91984A0-E55E-4EF9-9797-8ECB248FDDFC</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>8CCAB2E5-EF96-4E03-BFE5-AEFE636E30E4</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Copy path.</string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Kailey Lampert</string>
+	<key>description</key>
+	<string>System sounds</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Ding!</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>script</key>
+				<string>afplay "{query}"
+</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>C91984A0-E55E-4EF9-9797-8ECB248FDDFC</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>keyword</key>
+				<string>ding</string>
+				<key>script</key>
+				<string>require_once('extension_utils.php');
+$utils = new ExtensionUtils();
+
+$q = ucwords('{query}');
+
+$files = glob( "/System/Library/Sounds/{$q}*.aiff" );
+
+$results = array();
+
+foreach( $files as $audio ) {
+	$name = basename( $audio );
+	$results[] = array(
+		'title' =&gt; $name,
+		// 'icon' =&gt; 'filetype',
+		'icon' =&gt; 'icon.png',
+		'valid' =&gt; '',
+		'uid' =&gt; '',
+		'subtitle' =&gt; $audio,
+		'arg' =&gt; $audio
+	);
+}
+
+echo $utils-&gt;toXml( $results );
+</string>
+				<key>title</key>
+				<string>Play a system sound</string>
+				<key>type</key>
+				<integer>1</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>9D672782-154E-4DF1-A3B0-C066D478B22B</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>8CCAB2E5-EF96-4E03-BFE5-AEFE636E30E4</string>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>Icon:
+http://findicons.com/icon/203518/audio_volume_medium_newschool?id=203518
+License not listed, but similar icon says GPL:
+http://findicons.com/icon/94136/audio_volume_low?id=96658</string>
+	<key>uidata</key>
+	<dict>
+		<key>8CCAB2E5-EF96-4E03-BFE5-AEFE636E30E4</key>
+		<dict>
+			<key>ypos</key>
+			<real>160</real>
+		</dict>
+		<key>9D672782-154E-4DF1-A3B0-C066D478B22B</key>
+		<dict>
+			<key>ypos</key>
+			<real>160</real>
+		</dict>
+		<key>C91984A0-E55E-4EF9-9797-8ECB248FDDFC</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://trepmal.com/alfredapp/ding/</string>
+</dict>
+</plist>
